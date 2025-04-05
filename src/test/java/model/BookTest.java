@@ -61,10 +61,10 @@ class BookTest {
     @Test
     void testBooksAreEqual() {
         Book firstBook = new Book(
-        "Harry Potter and the Philosopher's Stone", 
-        "Joanne Rowling", 
-        "Scholastic Corporation", 
-        1997);
+            "Harry Potter and the Philosopher's Stone", 
+            "Joanne Rowling", 
+            "Scholastic Corporation", 
+            1997);
 
         Book secondBook = new Book(
             "Harry Potter and the Philosopher's Stone", 
@@ -78,16 +78,16 @@ class BookTest {
     @Test
     void testBooksAreNotEqual() {
         Book firstBook = new Book(
-        "Harry Potter and the Philosopher's Stone", 
-        "Joanne Rowling", 
-        "Scholastic Corporation", 
-        1997);
+            "Harry Potter and the Philosopher's Stone", 
+            "Joanne Rowling", 
+            "Scholastic Corporation", 
+            1997);
 
         Book secondBook = new Book(
-        "Harry Potter and the Prisoner of Azkaban", 
-        "Joanne Rowling", 
-        "Scholastic Corporation", 
-        1999);
+            "Harry Potter and the Prisoner of Azkaban", 
+            "Joanne Rowling", 
+            "Scholastic Corporation", 
+            1999);
 
         Assertions.assertNotEquals(firstBook, secondBook);
     }
