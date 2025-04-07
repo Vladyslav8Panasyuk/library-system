@@ -3,12 +3,14 @@ package com.example.model;
 import java.util.Objects;
 
 public class Book {
+    private static final int FIRST_PAGE_NUMBER = 1;
+
     private String title;
     private String author;
     private String publisher;
     private int publicationYear;
     private int pageCount;
-    private int currentPageNumber = 1;
+    private int currentPageNumber = FIRST_PAGE_NUMBER;
     private boolean isBorrowed;
 
     public Book(String title, String author, String publisher, int publicationYear, int pageCount) {
@@ -99,9 +101,13 @@ public class Book {
         }
     }
 
+    public void goToFirstPage() {
+        this.currentPageNumber = FIRST_PAGE_NUMBER;
+    }
+
     public void goToPage(int pageNumber) {
-        if (pageNumber < 1 || pageNumber > pageCount) {
-            throw new IllegalArgumentException(String.format("The page number must be between 1 and %d.", pageCount));
+        if (pageNumber < FIRST_PAGE_NUMBER || pageNumber > pageCount) {
+            throw new IllegalArgumentException(String.format("The page number must be between %d and %d.", FIRST_PAGE_NUMBER, pageCount));
         }
         this.currentPageNumber = pageNumber;
     }
@@ -116,7 +122,6 @@ public class Book {
         }
 
         Book book = (Book) obj;
-                
         return pageCount == book.pageCount &&
             publicationYear == book.publicationYear &&
             Objects.equals(title, book.title) &&
