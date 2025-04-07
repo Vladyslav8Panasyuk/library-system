@@ -19,6 +19,13 @@ public class Library {
         setStreet(street);
     }
 
+    public Library(Library library) {
+        setName(library.name);
+        setStreet(library.street);
+        setBooks(new ArrayList<Book>(library.books));
+        setReaders(new ArrayList<Reader>(library.readers));
+    }
+
     public String getName() {
         return name;
     }
@@ -39,8 +46,16 @@ public class Library {
         return books;
     }
 
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+
     public List<Reader> getReaders() {
         return readers;
+    }
+
+    public void setReaders(ArrayList<Reader> readers) {
+        this.readers = readers;
     }
 
     public void addBook(Book book) {
