@@ -13,6 +13,8 @@ public class Book {
     private int currentPageNumber = FIRST_PAGE_NUMBER;
     private boolean isBorrowed;
 
+    public Book() { }
+
     public Book(String title, String author, String publisher, int publicationYear, int pageCount) {
         setTitle(title);
         setAuthor(author);
@@ -71,6 +73,7 @@ public class Book {
             throw new IllegalArgumentException("The page count must be greater than zero.");
         }
         this.pageCount = pageCount;
+        goToFirstPage();
     }
     
     public int getCurrentPageNumber() {

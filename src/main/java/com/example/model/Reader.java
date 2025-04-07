@@ -12,7 +12,7 @@ public class Reader {
     private String name;
     private String email;
     private String phoneNumber;
-    private ArrayList<Book> books;
+    private ArrayList<Book> books = new ArrayList<Book>();
 
     public Reader() { }
 
@@ -20,7 +20,6 @@ public class Reader {
         setName(name);
         setEmail(email);
         setPhoneNumber(phoneNumber);
-        books = new ArrayList<Book>();
     }
 
     public String getName() {
