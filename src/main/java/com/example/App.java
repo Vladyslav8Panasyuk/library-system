@@ -15,7 +15,7 @@ import com.example.service.LibraryDataManager;
 
 public class App {
     private static final int LOWER_COMMAND_INDEX = 1; 
-    private static final int UPPER_COMMAND_INDEX = 13;
+    private static final int UPPER_COMMAND_INDEX = 14;
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -81,19 +81,23 @@ public class App {
                 case 10:
                     printAllReaders(library.getReaders());
                     break;
-                    
+
                 case 11:
-                    exportLibrary(library);
+                    printReaderBooks(library);
                     break;
 
                 case 12:
+                    exportLibrary(library);
+                    break;
+
+                case 13:
                     Optional<Library> optionalLibrary = importLibrary();
                     if (optionalLibrary.isPresent()) {
                         library = optionalLibrary.get();
                     }
                     break;
 
-                case 13:
+                case 14:
                     System.err.println("Program completed!");
                     isRunning = false;
                     break;
@@ -116,9 +120,10 @@ public class App {
         System.out.println("8. Give back Book");
         System.out.println("9. Show All Books");
         System.out.println("10. Show All Readers");
-        System.out.println("11. Export Library to JSON");
-        System.out.println("12. Import Library from JSON");
-        System.out.println("13. Exit");
+        System.out.println("11. Show all Books by the Reader");
+        System.out.println("12. Export Library to JSON");
+        System.out.println("13. Import Library from JSON");
+        System.out.println("14. Exit");
         System.out.println("");
     }
 
@@ -312,6 +317,7 @@ public class App {
         System.out.println("--- Book ---");
         System.out.println("Title: " + book.getTitle());
         System.out.println("Author: " + book.getAuthor());
+        System.out.println("Publisher: " + book.getPublisher());
         System.out.println("Publication year: " + book.getPublicationYear());
         System.out.println("Page count: " + book.getPageCount());
         System.out.println("Current page number: " + book.getCurrentPageNumber());
@@ -501,6 +507,20 @@ public class App {
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Unable to give back the book from the reader.");
+        }
+        System.out.println("");
+    }
+
+    private void printReaderBooks(Library library) {
+        System.out.println("=== Reader Books ===");
+        System.out.println("");
+        
+        Optional<Reader> reader = findReader(library);
+        if (reader.isEmpty()) {
+            System.out.println("Unfortunately, such a reader was not found in the library.");
+        } else {
+            printReaderInformation(reader.get());
+            printAllBooks(reader.get().getBooks());
         }
         System.out.println("");
     }
