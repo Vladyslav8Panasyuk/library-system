@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Library {
     private String name;
@@ -17,6 +16,13 @@ public class Library {
     public Library(String name, String street) {
         setName(name);
         setStreet(street);
+    }
+
+    public Library(Library library) {
+        setName(library.name);
+        setStreet(library.street);
+        setBooks(new ArrayList<Book>(library.books));
+        setReaders(new ArrayList<Reader>(library.readers));
     }
 
     public String getName() {
@@ -39,8 +45,16 @@ public class Library {
         return books;
     }
 
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+
     public List<Reader> getReaders() {
         return readers;
+    }
+
+    public void setReaders(ArrayList<Reader> readers) {
+        this.readers = readers;
     }
 
     public void addBook(Book book) {
@@ -145,18 +159,6 @@ public class Library {
         }
         book.setBorrowed(false);
         reader.removeBook(book);
-    }
-
-    public List<Book> getBorrowedBooks() {
-        return books.stream()
-            .filter(book -> book.isBorrowed())
-            .collect(Collectors.toList());
-    }
-
-    public List<Book> getUnborrowedBooks() {
-        return books.stream()
-            .filter(book -> !book.isBorrowed())
-            .collect(Collectors.toList());
     }
 
     @Override
