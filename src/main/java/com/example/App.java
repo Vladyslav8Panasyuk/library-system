@@ -35,7 +35,7 @@ public class App {
         readerComparators.add(new Pair<>("Phone number", Comparator.comparing(Reader::getPhoneNumber)));
     }
 
-    public void Run() {
+    public void run() {
         Library library = createLibrary();
         boolean isRunning = true;
         while (isRunning) {
