@@ -84,11 +84,17 @@ public class LibraryDataManagerTest {
     void testExportLibraryException() {
         Library emptyLibrary = new Library();
 
-        Assertions.assertDoesNotThrow(() -> 
+        Assertions.assertThrows(IOException.class, () -> 
             LibraryDataManager.exportLibrary(
                 emptyLibrary,
-                "test_empty.json",
+                "",
                 Comparator.comparing(Book::getTitle),
                 Comparator.comparing(Reader::getName)));
+    }
+
+    @Test
+    void testImportLibraryException() {
+        Assertions.assertThrows(IOException.class, () -> 
+            LibraryDataManager.importLibrary(""));
     }
 }
