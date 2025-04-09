@@ -13,13 +13,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class LibraryDataManager {
-    public static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public static void exportLibrary(
         Library library, String filePath, 
         Comparator<Book> bookComparator, Comparator<Reader> readerComparator) throws IOException {
         
-            Library libraryCopy = new Library(library);
+        Library libraryCopy = new Library(library);
         
         ArrayList<Book> sortedBooks = libraryCopy.getBooks().stream()
             .sorted(bookComparator)

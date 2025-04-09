@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Library {
     private String name;
@@ -160,18 +159,6 @@ public class Library {
         }
         book.setBorrowed(false);
         reader.removeBook(book);
-    }
-
-    public List<Book> getBorrowedBooks() {
-        return books.stream()
-            .filter(book -> book.isBorrowed())
-            .collect(Collectors.toList());
-    }
-
-    public List<Book> getUnborrowedBooks() {
-        return books.stream()
-            .filter(book -> !book.isBorrowed())
-            .collect(Collectors.toList());
     }
 
     @Override
